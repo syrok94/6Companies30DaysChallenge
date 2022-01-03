@@ -1,0 +1,44 @@
+// { Driver Code Starts
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+/*
+---------
+Author:Bobby
+Date:03/01/2022
+---------
+*/
+class Solution {
+  public:
+    int findPosition(int N , int M , int K) {
+        int rem=N-K+1;
+        
+        if(M>rem){
+            M=M-rem;
+            
+            return (M%N==0)?N:M%N;
+        }
+        else{
+            return M+K-1;
+        }
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N,M,K;
+        
+        cin>>N>>M>>K;
+
+        Solution ob;
+        cout << ob.findPosition(N,M,K) << endl;
+    }
+    return 0;
+}  // } Driver Code Ends
