@@ -1,0 +1,46 @@
+/*
+-------------------
+Author:Bobby
+Date: 04/01/2022
+-------------------
+*/
+
+//Time complexity O(N*log(N))
+//space complexity O(1)
+class Solution {
+private:
+    bool isPossible(vector<int>& nums,int target,int mid){
+        int n=nums.size();
+        long long int sum=0;
+        for(int i=0;i<mid;i++){
+            sum+=nums[i];
+        }
+        if(sum>=target) return true;
+        for(int i=mid;i<n;i++){
+            sum+=nums[i];
+            sum-=nums[i-mid];
+            if(sum>=target) {return true;break;}
+        }
+        
+        return false;
+    }
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n=nums.size();
+        
+        int low=0;
+        int high=n;
+        
+        int ans=0;
+        while(low<=high){
+            long long mid=low+(high-low)/2;
+            if(isPossible(nums,target,mid)){
+                ans=mid;
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        
+        return ans;
+    }
+};
